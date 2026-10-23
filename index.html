@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gitignore Checkup: generate a correct .gitignore and audit which of your files would leak</title>
+<meta name="description" content="Pick your stacks to generate a correct .gitignore, then paste your file list to audit it: see which pattern ignores each file, and get danger flags for .env files, keys and credentials that are not ignored.">
+<meta name="keywords" content="gitignore generator, check if file is gitignored online, gitignore template Node Python, why is file not ignored git">
+<meta name="author" content="Amir Hussain">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aamirtechs.github.io/gitignore-checkup/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#0b1f3a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gitignore Checkup">
+<meta property="og:description" content="Pick your stacks to generate a correct .gitignore, then paste your file list to audit it: see which pattern ignores each file, and get danger flags for .env files, keys and credentials that are not ignored.">
+<meta property="og:url" content="https://aamirtechs.github.io/gitignore-checkup/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gitignore Checkup">
+<meta name="twitter:description" content="Pick your stacks to generate a correct .gitignore, then paste your file list to audit it: see which pattern ignores each file, and get danger flags for .env files, keys and credentials that are not ignored.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Gitignore Checkup","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Amir Hussain","url":"https://aamirtechs.com"},"url":"https://aamirtechs.github.io/gitignore-checkup/"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root{--navy:#0b1f3a;--navy2:#122c50;--gold:#d4a72c;--ink:#16233a;--muted:#5a6a84;--line:#e3e9f2;--bg:#f6f8fb;--card:#ffffff}
+*{box-sizing:border-box}body{margin:0;font-family:'Plus Jakarta Sans',Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:44px 20px 36px;text-align:center}
+header h1{font-family:Sora,Arial,sans-serif;font-size:2rem;margin:0 0 10px}header h1 span{color:var(--gold)}
+header p{max-width:640px;margin:0 auto 14px;color:#dbe4f2}
+.stats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.stats span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:999px;font-size:.85rem}
+main{max-width:920px;margin:-18px auto 30px;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 6px 24px rgba(11,31,58,.07)}
+label{display:block;font-weight:700;margin:14px 0 6px;font-size:.92rem}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+textarea{min-height:110px;font-family:ui-monospace,Menlo,monospace;font-size:.85rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:640px){.row{grid-template-columns:1fr}}
+.btn-run{background:var(--gold);color:var(--navy);border:0;padding:12px 22px;border-radius:9px;font-weight:800;font-size:1rem;cursor:pointer;margin-top:18px}
+.btn-dl{background:var(--navy);color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;margin:10px 8px 0 0}
+.privacy{color:var(--muted);font-size:.88rem;margin-top:14px}
+.msg{margin-top:14px;font-weight:700}.err{color:#b3261e}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.9rem}th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}th{background:#eef3fa}
+section.info{max-width:920px;margin:0 auto 30px;padding:0 16px}section.info h2{font-family:Sora,Arial,sans-serif}
+footer{background:var(--navy);color:#cdd9ec;text-align:center;padding:26px 16px;font-size:.9rem}footer a{color:var(--gold)}
+pre.out{background:#0b1f3a;color:#e8eefc;padding:14px;border-radius:10px;overflow:auto;max-height:300px;font-size:.82rem;white-space:pre-wrap}
+.best{background:#fdf3d7;font-weight:700}.flag{color:#b3261e;font-weight:700}mark{background:#ffe58a}</style>
+</head>
+<body>
+<header>
+<h1>Gitignore <span>Checkup</span></h1>
+<p>Paste your file list and stack choices: get a correct .gitignore, plus a warning list of files you have that should be ignored but are not.</p>
+<div class="stats"><span>Free</span><span>100% in your browser</span><span>No sign-up</span></div>
+</header>
+<main>
+<div class="card">
+
+<label>Stacks in this project</label>
+<div><label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="node" style="width:auto" checked> Node</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="python" style="width:auto" > Python</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="java" style="width:auto" > Java</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="go" style="width:auto" > Go</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="rust" style="width:auto" > Rust</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="php" style="width:auto" > PHP</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="ruby" style="width:auto" > Ruby</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="macos" style="width:auto" checked> macOS</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="windows" style="width:auto" > Windows</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="ides" style="width:auto" checked> IDEs</label>
+<label style="display:inline-block;margin:4px 10px 4px 0;font-weight:500"><input type="checkbox" class="stack" value="secrets" style="width:auto" checked> Secrets guard</label></div>
+<label for="existing">Your existing .gitignore (optional, its rules are audited too)</label>
+<textarea id="existing" placeholder="Paste an existing .gitignore here, or leave blank"></textarea>
+<label for="files">Your file list, one path per line (paste a file tree or git status output)</label>
+<textarea id="files">src/index.js
+node_modules/react/index.js
+.env
+.env.example
+dist/app.js
+certs/dev.pem
+README.md</textarea>
+<button class="btn-run" id="run">Run the checkup</button>
+
+<p class="privacy">Runs 100% in your browser. Your files never leave this device.</p>
+<div class="msg" id="msg"></div>
+<div id="results"></div>
+</div>
+</main>
+<section class="info">
+<h2>How it works</h2>
+<ul>
+<li>Stack picker (Node, Python, Java, Go, Rust, PHP, Ruby, macOS, Windows, IDEs) assembles a correct .gitignore.</li>
+<li>Paste your file list and audit it against the generated rules plus any existing .gitignore you paste.</li>
+<li>Pattern explainer per file: which pattern matched, and on which line, including negation handling.</li>
+<li>Danger flags for .env files, private keys, keystores and credential file patterns.</li>
+<li>Download the .gitignore and a plain-text audit report.</li>
+</ul>
+</section>
+<footer>
+<p>Built by Amir Hussain, operations manager and founder of <a href="https://aamirtechs.com" target="_blank" rel="noopener">AamirTechs: operations, customer support and e-commerce services</a>.</p>
+<p><a href="https://github.com/aamirtechs" target="_blank" rel="noopener">More open source tools on GitHub</a></p>
+</footer>
+<script src="src/logic.js"></script>
+<script>
+function download(name, text, type) {
+  var blob = new Blob([text], { type: type || "text/plain;charset=utf-8" });
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 500);
+}
+function esc(s) { return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+var L = window.GitignoreCheckup;
+document.getElementById("run").addEventListener("click", function () {
+  var msg = document.getElementById("msg"); var res = document.getElementById("results");
+  msg.textContent = ""; msg.className = "msg"; res.innerHTML = "";
+  var stacks = Array.prototype.map.call(document.querySelectorAll(".stack:checked"), function (c) { return c.value; });
+  var generated = L.buildGitignore(stacks);
+  var existing = document.getElementById("existing").value;
+  var combinedText = generated + (existing.trim() ? "\n# your existing rules\n" + existing : "");
+  var rules = L.parseGitignore(combinedText);
+  var paths = L.parseFileList(document.getElementById("files").value);
+  if (!paths.length) { msg.textContent = "Paste at least one file path."; msg.className = "msg err"; return; }
+  var audit = L.auditFiles(paths, rules);
+  var leaks = audit.filter(function (a) { return a.leak; });
+  var html = "";
+  if (leaks.length) html += '<p class="flag">' + leaks.length + " danger file(s) would be committed: " + leaks.map(function (a) { return esc(a.path); }).join(", ") + "</p>";
+  else html += "<p><strong>No danger files leak.</strong> Every flagged file type is covered by an ignore rule.</p>";
+  html += "<table><tr><th>File</th><th>Status</th><th>Matched pattern</th></tr>";
+  audit.forEach(function (a) {
+    html += "<tr><td>" + esc(a.path) + (a.danger ? ' <span class="flag">(danger: ' + esc(a.danger) + ")</span>" : "") + "</td><td>" +
+      (a.ignored ? "Ignored" : '<span class="flag">Not ignored</span>') + "</td><td>" +
+      (a.matchedPattern ? esc(a.matchedPattern) + " (line " + a.matchedLine + ")" : "-") + "</td></tr>";
+  });
+  html += "</table>";
+  html += "<h3>Your .gitignore</h3><pre class=\"out\">" + esc(generated) + "</pre>";
+  html += '<button class="btn-dl" id="dlIgnore">Download .gitignore</button><button class="btn-dl" id="dlReport">Download audit report</button>';
+  res.innerHTML = html;
+  document.getElementById("dlIgnore").addEventListener("click", function () { download(".gitignore", generated); });
+  document.getElementById("dlReport").addEventListener("click", function () { download("gitignore-audit.txt", L.buildAuditReport(audit, generated)); });
+  msg.textContent = "Checked " + audit.length + " files against " + rules.length + " rules.";
+});
+
+</script>
+</body>
+</html>
